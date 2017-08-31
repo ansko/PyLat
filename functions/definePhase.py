@@ -4,7 +4,7 @@ def definePhase(systemName, atomNum):
             atomNum -= 3480
         if atomNum < 721:
             return 1
-        elif atomNum < 1560:
+        elif atomNum < 1561:
             return 2
         return 3
     elif systemName == 'PA6x20':
