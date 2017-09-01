@@ -11,7 +11,7 @@ def makeMolecule(atoms, bounds, startAtomNum=0, polymerLen=None):
     start_z = atoms[startatom_number][5]
     molecule.append([startatom_number, start_x, start_y, start_z])
 
-    for i in range(polymerLen - 2):
+    for i in range(polymerLen - 1):
         nearest_number = startatom_number + 1
         nearest_x = atoms[nearest_number][3]
         nearest_y = atoms[nearest_number][4]
