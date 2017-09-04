@@ -26,7 +26,9 @@ def main(step=1):
                   '1st conf/segregated/300K/7th cycle wiggle (1440140)/Dumps/')
     elif systemName == '5x20':
         folder = (mainFolder +
-                  'BiggerSystems/Comp/5chains/2.1 - Slow cooling (small)/1808725 - wiggle3/Dumps/')
+                  'BiggerSystems/Comp/5chains/2.1 - Slow cooling (small)/1799268 - wiggle2/Dumps/')
+        #folder = (mainFolder +
+        #          'BiggerSystems/Comp/5chains/2.1 - Slow cooling (small)/1808725 - wiggle3/Dumps/')
     elif systemName == '10x20':
         folder = (mainFolder +
                   'BiggerSystems/Comp/10chains/2.2 - More relaxation 500 (wiggle)/1808726 - wiggle3/Dumps/')
@@ -83,38 +85,38 @@ def main(step=1):
                 elif 35.5 * multiplier < z < 41 * multiplier:
                     l7[i] += stress / lx / ly / 4.5
             elif systemName == '5x20':
-                if -36 * multiplier < z < -31.5 * multiplier:
+                if 32 * multiplier < z < 37 * multiplier:
                     l1[i] += stress / lx / ly / 4.5
-                elif -31.5 * multiplier < z < -27 * multiplier:
+                elif 37 * multiplier < z < 42 * multiplier:
                     l2[i] += stress / lx / ly / 5
-                elif -69 * multiplier < z < -67.5 * multiplier:
+                elif 0 * multiplier < z < 0.5 * multiplier:
                     l2[i] += stress / lx / ly / 5
-                elif -67.5 * multiplier < z < -63.5 * multiplier:
+                elif 0.5 * multiplier < z < 4.5 * multiplier:
                     l3[i] += stress / lx / ly / 4
-                elif -63.5 * multiplier < z < -59.5 * multiplier:
+                elif 4.5 * multiplier < z < 9 * multiplier:
                     l4[i] += stress / lx / ly / 4
-                elif -59.5 * multiplier < z < -54.5 * multiplier:
+                elif 9 * multiplier < z < 13.5 * multiplier:
                     l5[i] += stress / lx / ly / 5
-                elif -54.5 * multiplier < z < -50.5 * multiplier:
+                elif 13.5 * multiplier < z < 18 * multiplier:
                     l6[i] += stress / lx / ly / 4
-                elif -50.5 * multiplier < z < -45 * multiplier:
+                elif 18 * multiplier < z < 23 * multiplier:
                     l7[i] += stress / lx / ly / 4
             elif systemName == '10x20':
-                if 24 * multiplier < z < 29 * multiplier:
+                if 31 * multiplier < z < 36.5 * multiplier:
                     l1[i] += stress / lx / ly / 4
-                elif 29 * multiplier < z < 33.5 * multiplier:
+                elif 36.5 * multiplier < z < 41 * multiplier:
                     l2[i] += stress / lx / ly / 4.5
-                elif 33.5 * multiplier < z < 38 * multiplier:
+                elif 41 * multiplier < z < 45.5 * multiplier:
                     l3[i] += stress / lx / ly / 4.5
-                elif 38 * multiplier < z < 56 * multiplier:
+                elif 45.5 * multiplier < z < 64 * multiplier:
                     l4[i] += stress / lx / ly / 26
-                elif -8 * multiplier < z < 1 * multiplier:
+                elif 0 * multiplier < z < 8 * multiplier:
                     l4[i] += stress / lx / ly / 26
-                elif 1 * multiplier < z < 5.5 * multiplier:
+                elif 8 * multiplier < z < 13 * multiplier:
                     l5[i] += stress / lx / ly / 4.5
-                elif 5.5 * multiplier < z < 10 * multiplier:
+                elif 13 * multiplier < z < 17.5 * multiplier:
                     l6[i] += stress / lx / ly / 4.5
-                elif 10 * multiplier < z < 15 * multiplier:
+                elif 17.5 * multiplier < z < 22 * multiplier:
                     l7[i] += stress / lx / ly / 4
             elif systemName == 'PA6x20':
                 l1[i] += stress / lx / ly / lz

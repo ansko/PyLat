@@ -72,7 +72,7 @@ def densityProfile():
                 profile[z][definePhase(systemName, atomNum)] += mass
     for z, value in enumerate(profile):
         if value[0] / lx / ly * multiplier / len(folders) / 50 / 0.602 != 0:
-            print((z - 1000)/ multiplier,
+            print(z / multiplier,
                   value[0] / lx / ly * multiplier / len(folders) / 50 / 0.602,
                   value[1] / lx / ly * multiplier / len(folders) / 50 / 0.602,
                   value[2] / lx / ly * multiplier / len(folders) / 50 / 0.602,
