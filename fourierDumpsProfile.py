@@ -13,7 +13,23 @@ from functions.error import error
 def main(step=10):
     o = Options()
     multiplier = o.getProperty('multiplier')
-    folder = '/home/anton/Article_MD/Computations/1st conf/mixed ok/300K/relaxation+wiggle/7th wiggle cycle (1455489)/Dumps/'
+    systemName = o.getProperty('systemName')
+    mainFolder = o.getProperty('mainFolder')
+    if systemName == 'mixed':
+        folder =  (mainFolder +
+                   '1st conf/mixed ok/300K/relaxation+wiggle/7th wiggle cycle (1455489)/Dumps/')
+    elif systemName == 'segregated':
+        folder = (mainFolder +
+                  '1st conf/segregated/300K/7th cycle wiggle (1440140)/Dumps/')
+    elif systemName == '5x20':
+        folder = (mainFolder +
+                  'BiggerSystems/Comp/5chains/2.1 - Slow cooling (small)/1808725 - wiggle3/Dumps/')
+    elif systemName == '10x20':
+        folder = (mainFolder +
+                  'BiggerSystems/Comp/10chains/2.2 - More relaxation 500 (wiggle)/1808726 - wiggle3/Dumps/')
+    elif systemName == 'PA6x20':
+        folder = (mainFolder +
+                  'PA6x20/2024799/Dumps/')
     allStresses = []
     for i in range(int(25000 / step) + 1):
         fname = folder + 'ALLstress.' + str(i * step * 100)

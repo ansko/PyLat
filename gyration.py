@@ -39,7 +39,10 @@ def gyration():
         folders = [s + '1st wiggle cycle (1414047)/',
                    s + '2nd wiggle cycle (1426324)/',
                    s + '3rd wiggle cycle ok (1427860)/',
-                   s + '4th wiggle cycle after corrupted (1427697)/']
+                   s + '4th wiggle cycle after corrupted (1427697)/',
+                   s + '5th wiggle cycle (1428078)/',
+                   s + '6th wiggle cycle (1432422)/',
+                   s + '7th cycle wiggle (1440140)/']
         polymerChainsNum = 90
         chainPerCell = 10
         systemSize = 3480
@@ -51,9 +54,30 @@ def gyration():
         polymerChainsNum = 144
         chainPerCell = 144
         polymerLen = 382
+    elif systemName == '5x20':
+        s = 'BiggerSystems/Comp/5chains/2.1 - Slow cooling (small)/'
+        folders = [s + '1795407 - wiggle no dumps/',
+                   s + '1797475 - wiggle 1',
+                   s + '1799268 - wiggle2',
+                   s + '1808725 - wiggle3']
+        polymerChainsNum = 45
+        chainsPerCell = 5
+        systemSize = 3470
+        delta = 1560
+        polymerLen = 382
+    elif systemName == '10x20':
+        s = 'BiggerSystems/Comp/10chains/2.2 - More relaxation 500 (wiggle)/'
+        folders = [s + '1795426 - wiggle no dumps',
+                   s + '1797474 - wiggle 1',
+                   s + '1799293 - wiggle2',
+                   s + '1808726 - wiggle3']
+        polymerChainsNum = 90
+        chainsPerCell = 10
+        systemSize = 1560 + 3820
+        delta = 1560
+        polymerLen = 382
     else:
         folders = None
-        angleTypesToSkip = None
     [bottom, top] = clayRanges(systemName)
     for folder in folders:
         fname = mainFolder + folder + 'co.50000.data'

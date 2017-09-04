@@ -26,6 +26,9 @@ def atomicMobility(T=300):
             s = '1st conf/segregated/300K/'
             startFile =  mainFolder + s + '1st wiggle cycle (1414047)/co.50000.data'
             endFile =  mainFolder + s + '6th wiggle cycle (1432422)/co.2500000.data'
+        else:
+            startFile = None
+            endFile = None
     elif systemName == 'PA6x20':
         if T == 300:
             s = 'PA6x20/2024799/'
@@ -34,7 +37,19 @@ def atomicMobility(T=300):
         else:
             startFile = None
             endFile = None
-            
+    elif systemName == '5x20':
+        if T == 300:
+            s = 'BiggerSystems/Comp/5chains/2.1 - Slow cooling (small)/'
+            startFile = mainFolder + s + '1795407 - wiggle no dumps/co.50000.data'
+            endFile = mainFolder + s + '1808725 - wiggle3/co.2500000.data'
+        else:
+            startFile = None
+            endFile = None
+    elif systemName == '10x20':
+        if T == 300:
+            s = 'BiggerSystems/Comp/10chains/2.2 - More relaxation 500 (wiggle)/'
+            strartFile = mainFolder + s + '1795426 - wiggle no dumps/co.50000.data'
+            endFile = mainFolder + s + '1808726 - wiggle3/co.2500000.data'
     dpStart = DataParser(startFile)
     dpStart.parseAtoms()
     startAtoms = dpStart.atoms()
