@@ -50,7 +50,7 @@ def gyration():
         polymerLen = 192
     elif systemName == 'PA6x20':
         s = 'PA6x20/'
-        folders = [s + '2024799/']
+        folders = [s + '2024799/',]
         polymerChainsNum = 144
         chainPerCell = 144
         polymerLen = 382
@@ -61,24 +61,27 @@ def gyration():
                    s + '1799268 - wiggle2',
                    s + '1808725 - wiggle3']
         polymerChainsNum = 45
-        chainsPerCell = 5
+        chainPerCell = 5
         systemSize = 3470
         delta = 1560
         polymerLen = 382
     elif systemName == '10x20':
         s = 'BiggerSystems/Comp/10chains/2.2 - More relaxation 500 (wiggle)/'
-        folders = [s + '1795426 - wiggle no dumps',
-                   s + '1797474 - wiggle 1',
-                   s + '1799293 - wiggle2',
-                   s + '1808726 - wiggle3']
+        folders = [s + '1795426 - wiggle no dumps/',
+                   s + '1797474 - wiggle 1/',
+                   s + '1799293 - wiggle2/',
+                   s + '1808726 - wiggle3/']
         polymerChainsNum = 90
-        chainsPerCell = 10
+        chainPerCell = 10
         systemSize = 1560 + 3820
         delta = 1560
         polymerLen = 382
     else:
         folders = None
-    [bottom, top] = clayRanges(systemName)
+    if systemName == 'PA6x20':
+        bottom = top = 0
+    else:
+        [bottom, top] = clayRanges(systemName)
     for folder in folders:
         fname = mainFolder + folder + 'co.50000.data'
         dp = DataParser(fname)
@@ -97,7 +100,7 @@ def gyration():
         profile = [[0, 0, 0, 0] for i in range(thickness)]
         for molNum in range(polymerChainsNum):
             if systemName in ['PA6x20',]:
-                startAtomNum = (MoleculeNumber % chainPerCell) * o.polymer_len
+                startAtomNum = (molNum % chainPerCell) * polymerLen + 1
             else:
                 startAtomNum = ((molNum // chainPerCell) * systemSize + delta + (molNum % chainPerCell) * polymerLen) + 1
             molecule = makeMolecule(atoms, bounds, startAtomNum, polymerLen)
@@ -108,7 +111,10 @@ def gyration():
                 atomsNum += 1
                 z += atom[3]
             z /= atomsNum
-            z = int(min(abs(z - top), (bottom + lz - z)) * multiplier)
+            z = int(min(abs(z - top),
+                        abs(z - top + lz),
+                        abs(bottom + lz - z),
+                        abs(bottom - z)) * multiplier)
             #print(atomsNum)
             [rx, ry, rz, errx, erry, errz] = computeRGyr(molecule)
             #profile[int((z - zlo) * multiplier)][0] += 1
@@ -129,9 +135,9 @@ def gyration():
         if val[0] == 0:
             continue
         print(valNum / multiplier,
-              val[1] / val[0] / len(folders),
-              val[2] / val[0] / len(folders),
-              val[3] / val[0] / len(folders))
+              val[1] / val[0],
+              val[2] / val[0],
+              val[3] / val[0])
             
     #print((ave_rx / polymerChainsNum)**0.5, ' +- ',
     #      (ove_errx / polymerChainsNum)**0.5, '\n',

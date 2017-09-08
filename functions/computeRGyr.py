@@ -20,6 +20,9 @@ def computeRGyr(molecule):
     rx /= n
     ry /= n
     rz /= n
+    rx = rx**0.5
+    ry = ry**0.5
+    rz = rz**0.5
 
     for atom in molecule:
         errx += (abs(atom[1] - x) - rx**0.5)**2

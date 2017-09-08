@@ -55,8 +55,9 @@ def densityProfile():
     zhi = dp.zhi()
     lx = dp.xhi() - dp.xlo()
     ly = dp.yhi() - dp.ylo()
+    lz = dp.zhi() - dp.zlo()
     masses = dp.masses()
-    profile = [[0, 0, 0, 0] for i in range(int((zhi - zlo + 1) * multiplier))]
+    profile = [[0, 0, 0, 0] for i in range(int((zhi - zlo + 1 + lz) * multiplier + 1))]
     for folder in folders:
         for i in range(1, 51):
             fname = mainFolder + folder + 'co.' + str(5 * i) + '0000.data'
@@ -66,7 +67,14 @@ def densityProfile():
             for atomNum, atom in enumerate(atoms):
                 if atomNum == 0:
                     continue
-                z = int(multiplier * (atom[5] - zlo))
+                if systemName == '10x20':
+                    if atom[5] < 15.5:
+                        z = int(multiplier * (atom[5] + lz - zlo - 21.5))
+                    else:
+                        z = int(multiplier * (atom[5] - zlo - 21.5))
+                else:
+                    z = int(multiplier * (atom[5] - zlo))
+                    #z = 1000 + int(multiplier * atom[5])
                 mass = masses[atom[1]]
                 profile[z][0] += mass
                 profile[z][definePhase(systemName, atomNum)] += mass
@@ -77,4 +85,6 @@ def densityProfile():
                   value[1] / lx / ly * multiplier / len(folders) / 50 / 0.602,
                   value[2] / lx / ly * multiplier / len(folders) / 50 / 0.602,
                   value[3] / lx / ly * multiplier / len(folders) / 50 / 0.602)
+                  
+                  
 densityProfile()

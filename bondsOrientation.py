@@ -41,14 +41,14 @@ def bondsOrientation():
         folders = [s + '2024799/']
         bondTypesToSkip = [1, 3, 6, 8, 11]
     elif systemName == '5x20':
-        s = '/BiggerSystems/Comp/5chains/2.1 - Slow cooling (small)/'
+        s = 'BiggerSystems/Comp/5chains/2.1 - Slow cooling (small)/'
         folders = [s + '1795407 - wiggle no dumps/',
                    s + '1797475 - wiggle 1/',
                    s + '1799268 - wiggle2/',
                    s + '1808725 - wiggle3/']
         bondTypesToSkip = [1, 2, 6, 7, 9, 10, 13, 15]
     elif systemName == '10x20':
-        s = '/BiggerSystems/Comp/10chains/2.2 - More relaxation 500 (wiggle)'
+        s = 'BiggerSystems/Comp/10chains/2.2 - More relaxation 500 (wiggle)/'
         folders = [s + '1795426 - wiggle no dumps/',
                    s + '1797474 - wiggle 1/',
                    s + '1799293 - wiggle2/',

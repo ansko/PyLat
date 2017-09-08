@@ -19,60 +19,61 @@ def main(step=1):
     multiplier = o.getProperty('multiplier')
     mainFolder = o.getProperty('mainFolder')
     if systemName == 'mixed':
-        folder =  (mainFolder +
-                   '1st conf/mixed ok/300K/relaxation+wiggle/1st wiggle cycle (1414048 )/Dumps/')
-        #folder =  (mainFolder +
-        #           '1st conf/mixed ok/300K/relaxation+wiggle/2nd wiggle cycle (1426323)/Dumps/')
-        #folder =  (mainFolder +
-        #           '1st conf/mixed ok/300K/relaxation+wiggle/3rd wiggle cycle(1427113)/Dumps/')
-        #folder =  (mainFolder +
-        #           '1st conf/mixed ok/300K/relaxation+wiggle/4th wiggle cycle (1427696)/Dumps/')
-        #folder =  (mainFolder +
-        #           '1st conf/mixed ok/300K/relaxation+wiggle/5th wiggle cycle ok (1436418)/Dumps/')
-        #folder =  (mainFolder +
-        #           '1st conf/mixed ok/300K/relaxation+wiggle/6th wiggle cycle (1432418)/Dumps/')
-        #folder =  (mainFolder +
-        #           '1st conf/mixed ok/300K/relaxation+wiggle/7th wiggle cycle (1455489)/Dumps/')
+        folders = [(mainFolder + '1st conf/mixed ok/300K/relaxation+wiggle/' + 
+                    '1st wiggle cycle (1414048 )/Dumps/'),
+                   (mainFolder + '1st conf/mixed ok/300K/relaxation+wiggle/' +
+                    '2nd wiggle cycle (1426323)/Dumps/'),
+                   (mainFolder + '1st conf/mixed ok/300K/relaxation+wiggle/' +
+                    '3rd wiggle cycle(1427113)/Dumps/'),
+                   (mainFolder + '1st conf/mixed ok/300K/relaxation+wiggle/' +
+                    '4th wiggle cycle (1427696)/Dumps/'),
+                   (mainFolder + '1st conf/mixed ok/300K/relaxation+wiggle/' +
+                    '5th wiggle cycle ok (1436418)/Dumps/'),
+                   (mainFolder + '1st conf/mixed ok/300K/relaxation+wiggle/' +
+                    '6th wiggle cycle (1432418)/Dumps/'),
+                   (mainFolder + '1st conf/mixed ok/300K/relaxation+wiggle/' +
+                    '7th wiggle cycle (1455489)/Dumps/')]
     elif systemName == 'segregated':
-        folder = (mainFolder +
-                  '1st conf/segregated/300K/1st wiggle cycle (1414047)/Dumps/')
-        #folder = (mainFolder +
-        #          '1st conf/segregated/300K/2nd wiggle cycle (1426324)/Dumps/')
-        #folder = (mainFolder +
-        #          '1st conf/segregated/300K/3rd wiggle cycle ok (1427860)/Dumps/')
-        #folder = (mainFolder +
-        #          '1st conf/segregated/300K/4th wiggle cycle after corrupted (1427697)/Dumps/')
-        #folder = (mainFolder +
-        #          '1st conf/segregated/300K/5th wiggle cycle (1428078)/Dumps/')
-        #folder = (mainFolder +
-        #          '1st conf/segregated/300K/6th wiggle cycle (1432422)/Dumps/')
-        #folder = (mainFolder +
-        #          '1st conf/segregated/300K/7th cycle wiggle (1440140)/Dumps/')
+        folders = [(mainFolder + '1st conf/segregated/300K/' +
+                    '1st wiggle cycle (1414047)/Dumps/'), 
+                   (mainFolder + '1st conf/segregated/300K/' +
+                    '2nd wiggle cycle (1426324)/Dumps/'),
+                   (mainFolder + '1st conf/segregated/300K/' +
+                    '3rd wiggle cycle ok (1427860)/Dumps/'),
+                   (mainFolder + '1st conf/segregated/300K/' +
+                    '4th wiggle cycle after corrupted (1427697)/Dumps/'),
+                   (mainFolder + '1st conf/segregated/300K/' +
+                    '5th wiggle cycle (1428078)/Dumps/'),
+                   (mainFolder + '1st conf/segregated/300K/' +
+                    '6th wiggle cycle (1432422)/Dumps/'),
+                   (mainFolder + '1st conf/segregated/300K/' +
+                    '7th cycle wiggle (1440140)/Dumps/')]
     elif systemName == '5x20':
-        folder = (mainFolder +
-                  'BiggerSystems/Comp/5chains/2.1 - Slow cooling (small)/1797475 - wiggle 1/Dumps/')
-        #folder = (mainFolder +
-        #          'BiggerSystems/Comp/5chains/2.1 - Slow cooling (small)/1799268 - wiggle2/Dumps/')
+        folders = [(mainFolder + 'BiggerSystems/Comp/5chains/2.1 - Slow cooling (small)/' +
+                    '1797475 - wiggle 1/Dumps/'),
+                   (mainFolder + 'BiggerSystems/Comp/5chains/2.1 - Slow cooling (small)/' +
+                    '1799268 - wiggle2/Dumps/')]
         # corrupted
         #folder = (mainFolder +
         #          'BiggerSystems/Comp/5chains/2.1 - Slow cooling (small)/1808725 - wiggle3/Dumps/')
     elif systemName == '10x20':
-        folder = (mainFolder +
-                  'BiggerSystems/Comp/10chains/2.2 - More relaxation 500 (wiggle)/1797474 - wiggle 1/Dumps/')
-        #folder = (mainFolder +
-        #          'BiggerSystems/Comp/10chains/2.2 - More relaxation 500 (wiggle)/1799293 - wiggle2/Dumps/')
-        #folder = (mainFolder +
-        #          'BiggerSystems/Comp/10chains/2.2 - More relaxation 500 (wiggle)/1808726 - wiggle3/Dumps/')
+        folders = [(mainFolder + 'BiggerSystems/Comp/10chains/2.2 - More relaxation 500 (wiggle)/' +
+                    '1797474 - wiggle 1/Dumps/'),
+                   (mainFolder + 'BiggerSystems/Comp/10chains/2.2 - More relaxation 500 (wiggle)/' +
+                    '1799293 - wiggle2/Dumps/'),
+                   (mainFolder + 'BiggerSystems/Comp/10chains/2.2 - More relaxation 500 (wiggle)/' +
+                    '1808726 - wiggle3/Dumps/')]
     elif systemName == 'PA6x20':
-        folder = (mainFolder +
-                  'PA6x20/2024799/Dumps/')
+        folders = [(mainFolder +
+                    'PA6x20/2024799/Dumps/'),]
     
     allStresses = []
-    for i in range(int(25000 / step) + 1):
-        fname = folder + 'ALLstress.' + str(i * step * 100)
-        print(fname)
-        sp = StressParser(fname)
-        allStresses.append(sp.stresses())
+    for folder in folders:
+        for i in range(int(25000 / step) + 1):
+            fname = folder + 'ALLstress.' + str(i * step * 100)
+            print(fname)
+            sp = StressParser(fname)
+            allStresses.append(sp.stresses())
     lx = sp.lx()
     ly = sp.ly()
     lz = sp.lz()
@@ -153,7 +154,7 @@ def main(step=1):
             elif systemName == 'PA6x20':
                 l1[i] += stress / lx / ly / lz
                     
-    for k in range(15):
+    for k in range(1, 15):
         if len(l1) / 2**k < 4:
             continue
         print('------------------', k, '-----------------')
@@ -170,10 +171,11 @@ def main(step=1):
                 arr1 = arr1 / 2
                 arr1 = arr1[::2]
                 arr = list(arr1)
-                (a0, a1, b1) = approximate(arr1)
+                (a0, a1, b1) = approximate(arr1, periodsNum=len(folders))
                 err = error(arr1, a0, a1, b1)
                 magnitude = 5 * math.sqrt(a1**2 + b1**2)
                 print(arrNum, i, magnitude, err)
+                
     
             
 main()
