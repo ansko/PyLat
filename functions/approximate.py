@@ -1,23 +1,19 @@
 import math
 
 
-def approximate(pressures, periodsNum=1):
+def approximate(pressures, harmonicNum=1):
     i = a0 = a1 = a2 = b1 = b2 = 0
-    suma0 = suma1 = suma2 = sumb1 = sumb2 = magnitude = 0
+    suma0 = sumaN = sumbN = 0
 
-    period = int(len(pressures) / periodsNum)
+    period = int(len(pressures))
 
     for i in range(len(pressures)):
         suma0 += float(pressures[i])
-        suma1 += float(pressures[i]) * math.cos(2 * math.pi / period * (i + 1))
-        sumb1 += float(pressures[i]) * math.sin(2 * math.pi / period * (i + 1))
-        suma2 += float(pressures[i]) * math.cos(4 * math.pi / period * (i + 1))
-        sumb2 += float(pressures[i]) * math.sin(4 * math.pi / period * (i + 1))
+        sumaN += float(pressures[i]) * math.cos(2 * harmonicNum * math.pi / period * (i + 1))
+        sumbN += float(pressures[i]) * math.sin(2 * harmonicNum * math.pi / period * (i + 1))
 
-    a0 = suma0 / period / periodsNum
-    a1 = 2 * suma1 / period / periodsNum
-    a2 = 2 * suma2 / period / periodsNum
-    b1 = 2 * sumb1 / period / periodsNum
-    b2 = 2 * sumb2 / period / periodsNum
+    a0 = suma0 / period
+    aN = 2 * sumaN / period
+    bN = 2 * sumbN / period
 
-    return (a0, a1, b1)
+    return (a0, aN, bN)

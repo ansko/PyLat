@@ -171,7 +171,7 @@ def main(step=1):
                 arr1 = arr1 / 2
                 arr1 = arr1[::2]
                 arr = list(arr1)
-                (a0, a1, b1) = approximate(arr1, periodsNum=len(folders))
+                (a0, a1, b1) = approximate(arr1, harmonicNum=len(folders))
                 err = error(arr1, a0, a1, b1)
                 magnitude = 5 * math.sqrt(a1**2 + b1**2)
                 print(arrNum, i, magnitude, err)

@@ -49,3 +49,6 @@ class StressParser():
 
     def lz(self):
         return self.__zhi - self.__zlo
+        
+    def zlo(self):
+        return self.__zlo
