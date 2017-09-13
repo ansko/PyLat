@@ -75,6 +75,7 @@ def densityProfile():
                 else:
                     z = int(multiplier * (atom[5] - zlo))
                     #z = 1000 + int(multiplier * atom[5])
+                z -= 9
                 mass = masses[atom[1]]
                 profile[z][0] += mass
                 profile[z][definePhase(systemName, atomNum)] += mass

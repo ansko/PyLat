@@ -8,7 +8,7 @@ from Classes.DataParser import DataParser
 from Classes.Options import Options
 
 from functions.definePhase import definePhase
-from functions.utils import orderParameter
+from functions.utils import orderParameter, clayRanges
 
 
 def bondsOrientation():
@@ -64,6 +64,7 @@ def bondsOrientation():
     ly = dp.yhi() - dp.ylo()
     lz = dp.zhi() - dp.zlo()
     masses = dp.masses()
+    [bottom, top] = clayRanges(systemName)
     profile = [[0, 0] for i in range(int((zhi - zlo + 1) * multiplier))]
     for folder in folders:
         for i in range(1, 51):
@@ -87,7 +88,11 @@ def bondsOrientation():
                 length = (dx**2 + dy**2 + dz**2)**0.5
                 cosTheta = dz / length
                 parameter = orderParameter(cosTheta)
-                z = int(multiplier * (atoms[bond[2]][5] - zlo))
+                z = min(abs(atoms[bond[2]][5] - top),
+                        abs(lz + bottom - atoms[bond[2]][5]),
+                        abs(bottom - atoms[bond[2]][5]),
+                        abs(atoms[bond[2]][5] - top + lz)) * multiplier
+                z = int(z)
                 profile[z][0] += 1
                 profile[z][1] += parameter
     for z, value in enumerate(profile):

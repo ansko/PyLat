@@ -18,7 +18,7 @@ from functions.utils import clayRanges
 def main(step=1):
     o = Options()
     systemName = o.getProperty('systemName')
-    multiplier = o.getProperty('multiplier')
+    multiplier = 1#o.getProperty('multiplier')
     mainFolder = o.getProperty('mainFolder')
     if systemName == 'mixed':
         folders = [(mainFolder + '1st conf/mixed ok/300K/relaxation+wiggle/' + 
@@ -83,7 +83,7 @@ def main(step=1):
     soft = [0 for i in range(len(allStresses))]
     hard = [0 for i in range(len(allStresses))]
     [bot, top] = clayRanges(systemName)
-    print(top - bot)
+    #print(top - bot)
     clayThickness = 9.2
     for i, stresses in enumerate(allStresses):
         for z, stress in enumerate(stresses):
